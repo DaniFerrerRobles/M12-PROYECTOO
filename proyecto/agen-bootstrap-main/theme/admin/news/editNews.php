@@ -2,6 +2,12 @@
 session_start();
 include '../../config.php'; // Conexión a mi base de datos
 
+// Verifica si el usuario no está logueado o no es administrador
+if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== 'admin') {
+    header('Location: ../../index.php');
+    exit();
+}
+
 // Si NO recibimos el id de la noticia que queremos editar, NO podremos editarla
 if (!isset($_GET['id'])) {
     header("Location: addNew.php");

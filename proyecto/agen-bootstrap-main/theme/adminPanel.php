@@ -1,3 +1,13 @@
+<?php
+// Inicia la sesión
+session_start();
+
+// Verifica si el usuario no está logueado o no es administrador
+if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== 'admin') {
+    header('Location: index.php');
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,35 +19,21 @@
 </head>
 <body class="bg-light">
 
-    <!-- Contenedor principal centrado -->
     <div class="container mt-5">
-        <!-- Título del panel -->
         <h1 class="text-center mb-4">🔧 Panel de Administración</h1>
 
-        <!-- Contenedor de botones del panel con separación entre ellos -->
         <div class="d-flex justify-content-center gap-3 admin-testimonials">
-
             <!-- Botón para gestionar usuarios -->
             <a href="admin/users/addUser.php" class="btn btn-primary w-100 mb-2">
-                <!-- Icono de añadir usuario -->
                 <i class="bi bi-person-plus"></i> Gestionar Usuarios
             </a>
 
             <!-- Botón para gestionar noticias -->
             <a href="admin/news/addNew.php" class="btn btn-secondary w-100 mb-2">
-                <!-- Icono de periódico -->
                 <i class="bi bi-newspaper"></i> Gestionar Noticias
-            </a>      
-
+            </a>
         </div>
     </div>
 
 </body>
 </html>
-
-
-
-
-
-
-

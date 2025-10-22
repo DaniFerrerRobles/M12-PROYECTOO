@@ -2,6 +2,12 @@
 session_start();
 include '../../config.php'; // Conexión a la base de datos
 
+// Verifica si el usuario no está logueado o no es administrador
+if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== 'admin') {
+    header('Location: ../../index.php');
+    exit();
+}
+
 //Si los datos han sido correctamente recibidos por POST, los guardamos en variables
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['nombre_usuario'];
