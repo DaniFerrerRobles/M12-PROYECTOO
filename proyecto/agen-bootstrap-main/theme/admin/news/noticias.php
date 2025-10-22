@@ -51,11 +51,6 @@ $stmtNoticias->execute();
 $resultNoticias = $stmtNoticias->get_result();
 $noticias = $resultNoticias->fetch_all(MYSQLI_ASSOC);
 $stmtNoticias->close();
-
-// Si no hay noticias, ponemos array vacío
-if (!$noticias) {
-    $noticias = [];
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -80,7 +75,6 @@ if (!$noticias) {
 
         <!-- Seleccionamos jornada -->
         <form method="POST" class="mb-4 d-flex align-items-center gap-2">
-            <input type="hidden" name="liga_id" value="<?php echo $liga_id; ?>">
             <label for="jornada" class="form-label mb-0">Jornada:</label>
             <select name="jornada" id="jornada" class="form-select w-auto">
                 <?php for ($i = 1; $i <= 38; $i++): ?>
@@ -109,8 +103,6 @@ if (!$noticias) {
 
                     <!-- Formulario de comentario -->
                     <form method="POST" class="mt-3">
-                        <input type="hidden" name="liga_id" value="<?php echo $liga_id; ?>">
-                        <input type="hidden" name="jornada" value="<?php echo $jornada; ?>">
                         <input type="hidden" name="noticia_id" value="<?php echo $noticia['id']; ?>">
                         <div class="mb-2">
                             <textarea name="comentario" class="form-control" placeholder="Escribe tu comentario..." rows="2" required></textarea>
@@ -128,7 +120,7 @@ if (!$noticias) {
                     $stmtComentarios->bind_param("i", $noticia['id']);
                     $stmtComentarios->execute();
                     $resultComentarios = $stmtComentarios->get_result();
-                    $comentarios = $resultComentarios->fetch_all(MYSQLI_ASSOC) ?: []; // Si no hay comentarios, array vacío
+                    $comentarios = $resultComentarios->fetch_all(MYSQLI_ASSOC);
                     $stmtComentarios->close();
                     ?>
 
