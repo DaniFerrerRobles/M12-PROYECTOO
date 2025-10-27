@@ -2,8 +2,8 @@
 session_start();
 include '../../config.php'; // Configuración de la base de datos
 
-// Verifica si el usuario no está logueado o no es administrador
-if (!isset($_SESSION['user_rol']) || $_SESSION['user_rol'] !== 'admin') {
+// Verifica si el usuario no es administrador
+if ($_SESSION['user_rol'] !== 'admin') {
     header('Location: ../../index.php');
     exit();
 }
