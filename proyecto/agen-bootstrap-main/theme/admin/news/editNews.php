@@ -31,7 +31,7 @@ if (!$noticia) {
 }
 
 // Obtenemos el id y el nombre de las ligas
-$ligas = $mysqli->query("SELECT id, nombre FROM LIGAS")->fetch_all(MYSQLI_ASSOC);
+$ligas = $mysqli->query("SELECT id, nombre FROM LIGAS ORDER BY id ASC")->fetch_all(MYSQLI_ASSOC);
 
 // Si los datos han sido correctamente recibidos por POST, los guardamos en variables
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

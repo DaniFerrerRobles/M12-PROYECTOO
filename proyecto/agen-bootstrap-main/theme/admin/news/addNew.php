@@ -9,7 +9,7 @@ if ($_SESSION['user_rol'] !== 'admin') {
 }
 
 //Obtenemos el id y el nombre de las ligas
-$result = $mysqli->query("SELECT id, nombre FROM LIGAS");
+$result = $mysqli->query("SELECT id, nombre FROM LIGAS ORDER BY id ASC");
 
 //Si obtenemos resultados del SELECT, lo convertimos en un array y lo guardamos en la variable "ligas", sino, el array estará vacío
 $ligas = $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
