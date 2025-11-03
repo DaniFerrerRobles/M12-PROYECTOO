@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         $success = "Perfil actualizado correctamente.";
 
-        // Refrescar datos
+        // Actualizar datos
         $stmt = $mysqli->prepare("SELECT nombre_usuario, email FROM USUARIOS WHERE id=?");
         $stmt->bind_param("i", $usuario_id);
         $stmt->execute();
