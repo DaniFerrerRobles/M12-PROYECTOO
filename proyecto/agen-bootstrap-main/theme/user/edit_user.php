@@ -13,7 +13,7 @@ $usuario = $stmt->get_result()->fetch_assoc();
 
 // Si no existe el usuario, redirige al inicio
 if (!$usuario) {
-    header("Location: ../../index.php");
+    header("Location: ../index.php");
     exit;
 }
 
