@@ -8,7 +8,7 @@ if (!isset($_GET['liga_id'])) {
     exit;
 }
 
-// Verifica si el usuario NO es admin ni user
+// Verifica si el usuario NO es admin ni usuario
 if ($_SESSION['user_rol'] !== 'admin' && $_SESSION['user_rol'] !== 'usuario') {
     header('Location: ../../index.php');
     exit();
