@@ -63,12 +63,17 @@ $stmtNoticias->close();
 <body>
 
 <!-- Fondo de la liga -->
-<div class="position-relative vh-100" style="background-image: url('<?php echo $liga['foto']; ?>'); background-size: cover; background-position: center;">
+<div class="position-relative vh-100">
+
+    <!-- Imagen de fondo -->
+    <img src="<?php echo $liga['foto']; ?>"alt="Fondo>" class="position-absolute top-0 start-0 w-100 h-100 object-fit-cover">
 
     <!-- Capa oscura encima del fondo -->
     <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50"></div>
 
-    <div class="container position-relative py-5 text-white" style="z-index: 1; overflow-y: auto; max-height: 100vh;">
+    <!-- Contenido principal -->
+    <div class="container position-relative py-5 text-white"
+         style="z-index: 1; overflow-y: auto; max-height: 100vh;">
 
         <!-- Nombre de la liga -->
         <h1 class="text-center mb-4"><?php echo $liga['nombre']; ?></h1>
@@ -78,7 +83,9 @@ $stmtNoticias->close();
             <label for="jornada" class="form-label mb-0">Jornada:</label>
             <select name="jornada" id="jornada" class="form-select w-auto">
                 <?php for ($i = 1; $i <= 38; $i++): ?>
-                    <option value="<?php echo $i; ?>" <?php if ($i == $jornada) echo 'selected'; ?>><?php echo $i; ?></option>
+                    <option value="<?php echo $i; ?>" <?php if ($i == $jornada) echo 'selected'; ?>>
+                        <?php echo $i; ?>
+                    </option>
                 <?php endfor; ?>
             </select>
             <button type="submit" class="btn btn-primary btn-sm">Filtrar</button>
@@ -98,7 +105,7 @@ $stmtNoticias->close();
                     <h5 class="text-muted"><?php echo $noticia['subtitulo']; ?></h5>
                     <p><?php echo $noticia['contenido']; ?></p>
                     <p class="text-muted small">
-                       publicado el <?php echo $noticia['fecha_publicacion']; ?>
+                        publicado el <?php echo $noticia['fecha_publicacion']; ?>
                     </p>
 
                     <!-- Formulario de comentario -->
@@ -110,21 +117,22 @@ $stmtNoticias->close();
                         <button type="submit" class="btn btn-primary btn-sm">Comentar</button>
                     </form>
 
-                    <!-- Obtenemos los comentarios de esta noticia -->
+                    <!-- Comentarios -->
                     <?php
-                    $stmtComentarios = $mysqli->prepare("SELECT COMENTARIOS.contenido, COMENTARIOS.fecha_comentario, USUARIOS.nombre_usuario
-                        FROM COMENTARIOS JOIN USUARIOS
-                        ON COMENTARIOS.usuario_id = USUARIOS.id
+                    $stmtComentarios = $mysqli->prepare("
+                        SELECT COMENTARIOS.contenido, COMENTARIOS.fecha_comentario, USUARIOS.nombre_usuario
+                        FROM COMENTARIOS
+                        JOIN USUARIOS ON COMENTARIOS.usuario_id = USUARIOS.id
                         WHERE COMENTARIOS.noticia_id = ?
-                        ORDER BY COMENTARIOS.id ASC");
-                    $stmtComentarios->bind_param("i", $noticia['id']);
+                        ORDER BY COMENTARIOS.id ASC
+                    ");
+                    $stmtComentarios->bind_param('i', $noticia['id']);
                     $stmtComentarios->execute();
                     $resultComentarios = $stmtComentarios->get_result();
                     $comentarios = $resultComentarios->fetch_all(MYSQLI_ASSOC);
                     $stmtComentarios->close();
                     ?>
 
-                    <!-- Mostramos los comentarios -->
                     <?php foreach ($comentarios as $comentario): ?>
                         <div class="border p-2 mb-2 rounded bg-light text-dark">
                             <strong><?php echo $comentario['nombre_usuario']; ?></strong>
@@ -132,20 +140,18 @@ $stmtNoticias->close();
                             <p class="mb-0"><?php echo $comentario['contenido']; ?></p>
                         </div>
                     <?php endforeach; ?>
-
                 </div>
             </div>
         <?php endforeach; ?>
 
-        <!-- Si no hay noticias mostramos esta frase -->
         <?php if (empty($noticias)): ?>
             <div class="alert alert-info text-dark">No hay noticias disponibles.</div>
         <?php endif; ?>
 
-        <!-- Botón para volver por si nos equivocamos -->
         <a href="../../index.php" class="btn btn-secondary">Volver</a>
     </div>
 </div>
+
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
