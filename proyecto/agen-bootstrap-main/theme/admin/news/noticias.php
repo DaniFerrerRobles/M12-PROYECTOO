@@ -119,13 +119,11 @@ $stmtNoticias->close();
 
                     <!-- Comentarios -->
                     <?php
-                    $stmtComentarios = $mysqli->prepare("
-                        SELECT COMENTARIOS.contenido, COMENTARIOS.fecha_comentario, USUARIOS.nombre_usuario
-                        FROM COMENTARIOS
-                        JOIN USUARIOS ON COMENTARIOS.usuario_id = USUARIOS.id
+                    $stmtComentarios = $mysqli->prepare(" SELECT COMENTARIOS.contenido, COMENTARIOS.fecha_comentario, USUARIOS.nombre_usuario
+                        FROM COMENTARIOS JOIN USUARIOS
+                        ON COMENTARIOS.usuario_id = USUARIOS.id
                         WHERE COMENTARIOS.noticia_id = ?
-                        ORDER BY COMENTARIOS.id ASC
-                    ");
+                        ORDER BY COMENTARIOS.id ASC");
                     $stmtComentarios->bind_param('i', $noticia['id']);
                     $stmtComentarios->execute();
                     $resultComentarios = $stmtComentarios->get_result();
