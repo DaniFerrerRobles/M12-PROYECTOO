@@ -8,6 +8,12 @@ if (!isset($_GET['liga_id'])) {
     exit;
 }
 
+// Verifica si el usuario NO es admin ni user
+if ($_SESSION['user_rol'] !== 'admin' && $_SESSION['user_rol'] !== 'usuario') {
+    header('Location: ../../index.php');
+    exit();
+}
+
 // Si recibimos id de liga, SI podremos ver las noticias correspondientes, guardamos su id en la variable "liga_id"
 $liga_id = $_GET['liga_id'];
 
