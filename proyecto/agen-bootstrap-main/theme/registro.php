@@ -65,9 +65,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
 
             <div class="mb-3">
-                <label for="rol" class="form-label text-dark">Rol</label>
+                <label for="rol" class="form-label text-dark">Selecciona un Rol</label>
                 <select class="form-select" name="rol" id="rol" required>
-                    <option value="">Selecciona un rol</option>
                     <option value="usuario">Usuario</option>
                 </select>
             </div>

@@ -71,9 +71,8 @@ $usuarios = $result->fetch_all(MYSQLI_ASSOC);
         </div>
 
         <div class="mb-3">
-            <label for="rol" class="form-label">Rol</label>
+            <label for="rol" class="form-label">Selecciona un Rol</label>
             <select class="form-select" name="rol" id="rol" required>
-                <option value="">Selecciona un rol</option>
                 <option value="usuario">Usuario</option>
                 <option value="admin">Administrador</option>
             </select>
