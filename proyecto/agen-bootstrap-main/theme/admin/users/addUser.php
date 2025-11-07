@@ -53,11 +53,6 @@ $usuarios = $result->fetch_all(MYSQLI_ASSOC);
         <div class="alert alert-danger"><?php echo $error; ?></div>
     <?php endif; ?>
 
-    <!--Si hay éxito al añadir el usuario, se mostrará en verde-->
-    <?php if (!empty($success)): ?>
-        <div class="alert alert-success"><?php echo $success; ?></div>
-    <?php endif; ?>
-
         <!--Enviamos por POST el nombre de usuario, email, contraseña y rol. Estos datos se reciben arriba y hacemos el INSERT INTO !-->
     <form method="POST" class="mb-5">
         <div class="mb-3">
