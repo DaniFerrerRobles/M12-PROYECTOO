@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //Si la consulta de INSERT INTO se ejecuta correctamente, dará un mensaje de éxito, sino, dará error
     if ($stmt->execute()) {
-        $success = "Usuario agregado correctamente.";
+            header("Location: addUser.php");
     } else {
         $error = "Error al agregar usuario.";
     }
