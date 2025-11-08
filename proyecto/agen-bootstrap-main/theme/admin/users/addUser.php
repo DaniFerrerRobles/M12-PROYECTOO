@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $mysqli->prepare("INSERT INTO USUARIOS (nombre_usuario, email, password, rol) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $nombre, $email, $hashed_password, $rol);
 
-    //Si la consulta de INSERT INTO se ejecuta correctamente, dará un mensaje de éxito, sino, dará error
+    //Si la consulta de INSERT INTO se ejecuta correctamente, recarga la página, sino, dará error
     if ($stmt->execute()) {
             header("Location: addUser.php");
     } else {

@@ -44,14 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Si todo va bien, recargo la página
             header("Location: addNew.php");
             exit;
-        } else {
-            // Si hay error al ejecutar, lo muestro
-            echo "Error al insertar la noticia.";
         }
         $stmt->close(); // Cierro la consulta
-    } else {
-        // Si falla la preparación de la consulta, muestro error
-        echo "Error en la consulta.";
     }
 }
 ?>
