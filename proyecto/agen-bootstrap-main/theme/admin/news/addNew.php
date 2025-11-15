@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $contenido = $_POST['contenido'];
     $liga_id = $_POST['liga_id'];
     $jornada = $_POST['jornada'];
-    $competicion = $_POST['competicion'] ?? '';
+    $competicion = $_POST['competicion'];
     $fecha_publicacion = $_POST['fecha_publicacion'] ?: date('Y-m-d H:i:s');
 
     // Inserto los datos recibidos del formulario en mi tabla "NOTICIAS"
