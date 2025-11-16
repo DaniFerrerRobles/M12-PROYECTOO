@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Si la consulta se preparó bien
     if ($stmt) {
         // Inserto la info de mis variables en la consulta
-        $stmt->bind_param("sssssssi", $titulo, $foto, $subtitulo, $contenido, $liga_id, $competicion, $fecha_publicacion, $jornada);
+        $stmt->bind_param("ssssissi", $titulo, $foto, $subtitulo, $contenido, $liga_id, $competicion, $fecha_publicacion, $jornada);
         
         // Ejecuto la consulta
         if ($stmt->execute()) {

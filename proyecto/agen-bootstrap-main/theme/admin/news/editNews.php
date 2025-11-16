@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Actualizamos la info con el UPDATE
     $stmt = $mysqli->prepare("UPDATE NOTICIAS SET titulo=?, foto=?, subtitulo=?, contenido=?, liga_id=?, jornada=?, competicion=?, fecha_publicacion=? WHERE id=?");
-    $stmt->bind_param("ssssisssi", $titulo, $foto, $subtitulo, $contenido, $liga_id, $jornada, $competicion, $fecha_publicacion, $noticia_id);
+    $stmt->bind_param("sssiisssi", $titulo, $foto, $subtitulo, $contenido, $liga_id, $jornada, $competicion, $fecha_publicacion, $noticia_id);
     // Ejecutamos UPDATE
     $stmt->execute();
 
